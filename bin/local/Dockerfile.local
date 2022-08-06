@@ -1,0 +1,17 @@
+FROM public.ecr.aws/r2d2z1z9/sotanext/node:14
+RUN apt install make gcc g++ python
+
+RUN mkdir -p /app/api
+WORKDIR /app/api
+
+COPY . .
+
+RUN npm install && npm run build
+RUN ls -a
+
+RUN chmod +x entrypoint.sh
+#RUN chmod +x entry.sh
+
+EXPOSE 3000 80
+
+CMD ["/bin/bash", "./entrypoint.sh"]

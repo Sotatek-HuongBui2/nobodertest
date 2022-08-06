@@ -1,0 +1,45 @@
+version: '3.8'
+services:
+  back:
+    container_name: noborderz_be
+    image: noborderz_api
+    build: .
+    ports:
+      - "8083:3000"
+    volumes:
+      - .:/app/api/
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+      - redis
+    environment:
+      HOST: 0.0.0.0
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=noborderz
+      - MYSQL_ROOT_PASSWORD=1
+    ports:
+      - '3377:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+  redis:
+    image: "redis:alpine"
+    command: redis-server
+    volumes:
+      - redis-store:/var/lib/redis
+    ports:
+      - "6320:6379"
+networks:
+  default:
+    external:
+      name: noborderz-common-network
+volumes:
+  db:
+    driver: local
+  redis-store:

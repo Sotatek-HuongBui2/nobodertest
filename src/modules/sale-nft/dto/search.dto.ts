@@ -1,0 +1,29 @@
+export enum SearchSort {
+  PRICE_ASC = 1,
+  PRICE_DESC = 2,
+  NEWEST = 3,
+  OLDEST = 4,
+  ALPHABETICALLY_ASC = 5,
+  ALPHABETICALLY_DESC = 6,
+}
+
+export enum SearchTradingSort {
+  PUT_ON_SALE = 0,
+  MAKE_OFFER = 1,
+  CANCEL_SALE_NFT = 2,
+  BUY_NFT = 3,
+  ACCEPT_NFT = 4,
+  CANCEL_MAKE_OFFER = 9,
+  RECLAIM_MAKE_OFFER = 10,
+  MINT_NFT = 15,
+
+  CANCEL_AUCTION = 18,
+  PUT_AUCTION = 19,
+  BID_NFT = 20,
+  BID_EDITED = 21,
+  CANCEL_BID_NFT = 22,
+  RECLAIM_BID_NFT = 24,
+  WINNER_BID_NFT = 23,
+  ACCEPT_BID_NFT = 25,
+  RECLAIM_NFT = 26,
+}
